@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hazard Studio | هازارد استودیو</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #222 0%, #090909 45%, #000 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+            background-size: 35px 35px;
+            mask-image: linear-gradient(to bottom, black, transparent);
+        }
+
+        .container {
+            width: min(92%, 700px);
+            margin: auto;
+            padding: 35px 0 30px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 28px;
+            background: rgba(20,20,20,0.78);
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.5),
+                inset 0 1px rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 18px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff1744, #7c001b);
+            box-shadow: 0 0 35px rgba(255,23,68,0.35);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        .description {
+            margin-top: 22px;
+            line-height: 2.2;
+            font-size: 16px;
+        }
+
+        .highlight {
+            color: #ff3158;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        button {
+            border: 0;
+            padding: 15px 8px;
+            border-radius: 16px;
+            background: #181818;
+            color: white;
+            border: 1px solid #303030;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            background: #252525;
+            border-color: #ff3158;
+            box-shadow: 0 8px 25px rgba(255,49,88,0.15);
+        }
+
+        .page {
+            display: none;
+            margin-top: 20px;
+            padding: 25px;
+            border-radius: 24px;
+            background: rgba(18,18,18,0.9);
+            border: 1px solid #292929;
+            animation: show 0.25s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes show {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page h2 {
+            margin-bottom: 18px;
+            color: #ff3158;
+        }
+
+        .page p {
+            color: #ddd;
+            line-height: 2.2;
+            font-size: 15px;
+        }
+
+        .rules {
+            margin-top: 10px;
+            padding-right: 20px;
+        }
+
+        .rules li {
+            margin-bottom: 12px;
+            color: #ddd;
+            line-height: 1.9;
+        }
+
+        .contact-number {
+            direction: ltr;
+            text-align: center;
+            margin: 20px 0;
+            padding: 18px;
+            border-radius: 15px;
+            background: #111;
+            color: #ff3158;
+            font-size: 21px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .back {
+            width: 100%;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ff1744, #a50027);
+            border: none;
+        }
+
+        .back:hover {
+            background: linear-gradient(135deg, #ff3158, #c00030);
+            border: none;
+            box-shadow: 0 8px 25px rgba(255,23,68,0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .owner {
+            display: inline-block;
+            margin-top: 8px;
+            color: #ff3158;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 94%;
+                padding-top: 20px;
+            }
+
+            .hero {
+                padding: 25px 16px;
+                border-radius: 23px;
+            }
+
+            .logo {
+                width: 72px;
+                height: 72px;
+                font-size: 30px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                padding: 16px;
+            }
+
+            .page {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="hero">
+
+        <div class="logo">
+            H
+        </div>
+
+        <h1>Hazard Studio</h1>
+
+        <div class="subtitle">
+            سلام رفیق... 🔥
+        </div>
+
+        <div class="description">
+            برنامه نویسی بلد نیستی؟ 🙁💔<br>
+            ولی میخوای سایت خودتو بسازی؟ 💸<br>
+            بدون هیچ هزینه ای؟ 💸❌<br><br>
+
+            خب بیا با <span class="highlight">هازارد استودیو</span>
+            آشنا شو 🔥<br>
+
+            مرجع تخصصی برنامه نویسی ایرانی ✅🔥<br>
+            سایتتو بساز بدون هیچ هزینه ای 🔥✅<br><br>
+
+            یکم صبر کنی ساخت سایت بزودی باز میشه 🔐❤️
+        </div>
+
+        <div class="buttons">
+
+            <button onclick="showPage('about')">
+                📖 درباره ما
+            </button>
+
+            <button onclick="showPage('rules')">
+                📜 قوانین
+            </button>
+
+            <button onclick="showPage('contact')">
+                📞 تماس با ما
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- درباره ما -->
+
+    <section id="about" class="page">
+
+        <h2>📖 درباره ما</h2>
+
+        <p>
+            سایت هازارد استودیو مرجع تخصصی آموزش
+            برنامه نویسی ایرانی است. 🔥🇮🇷
+        </p>
+
+        <button class="back" onclick="goHome()">
+            🔙 برگشت
+        </button>
+
+    </section>
+
+
+    <!-- قوانین -->
+
+    <section id="rules" class="page">
+
+        <h2>📜 قوانین</h2>
+
+        <ul class="rules">
+
+            <li>
+                قیمت ربات‌های ساده رایگان است و هیچ هزینه‌ای ندارد. ✅
+            </li>
+
+            <li>
+                سایت ساده هزینه ندارد. ✅
+            </li>
+
+            <li>
+                ربات تلگرامی و روبیکایی پیشرفته
+                تنها <strong>۸۵ هزار تومان</strong>
+                با <strong>۵ هزار تومان مالیات</strong> است. ✅
+            </li>
+
+            <li>
+                طبق قوانین ایران ❤️🇮🇷
+            </li>
+
+            <li>
+                این سایت متعلق به سازمان
+                <strong>Hazard Studio</strong> می‌باشد. 🇮🇷
+            </li>
+
+        </ul>
+
+        <button class="back" onclick="goHome()">
+            🔙 برگشت
+        </button>
+
+    </section>
+
+
+    <!-- تماس -->
+
+    <section id="contact" class="page">
+
+        <h2>📞 تماس با ما</h2>
+
+        <p>
+            جهت ساخت سایت و ربات تلگرامی و روبیکایی
+            به پیوی مالک مراجعه کنید:
+        </p>
+
+        <a
+            class="owner"
+            href="https://t.me/HazardStudio_Owner"
+            target="_blank"
+        >
+            @HazardStudio_Owner
+        </a>
+
+        <div class="contact-number">
+            09019021185
+        </div>
+
+        <button class="back" onclick="goHome()">
+            🔙 برگشت
+        </button>
+
+    </section>
+
+
+    <footer>
+        © Hazard Studio — تمامی حقوق محفوظ است 🇮🇷
+    </footer>
+
+</div>
+
+
+<script>
+
+    function showPage(pageId) {
+
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+
+        window.scrollTo({
+            top: document.getElementById(pageId).offsetTop - 20,
+            behavior: "smooth"
+        });
+    }
+
+
+    function goHome() {
+
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+</script>
+
+</body>
+</html>
